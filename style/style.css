@@ -853,13 +853,6 @@ body.version-c {
   text-align: justify;
 }
 
-/* BREAKPOINT ESPECIAL PARA TEXTO DESCRIPCIÓN PACK*/
-@media (max-width: 1070px) {
-  .parrafo-desc-pack-c {
-    font-size: 0.95rem;
-  }
-}
-
 .der-vertical_C {
   flex: 1;
 }
@@ -878,17 +871,30 @@ body.version-c {
   width: 100%;
 }
 
-.pack-viaje1-c {
+.pack-viaje1-c,
+.pack-viaje2-c,
+.pack-viaje3-c {
   align-self: stretch;
   flex: 1;
   height: 236px;
   padding: 12px;
   border-radius: 12px;
-  background-image: url("https://images8.alphacoders.com/866/866198.jpg");
   background-size: cover;
   background-position: center;
   color: white;
   position: relative;
+}
+
+.pack-viaje1-c {
+  background-image: url("https://images8.alphacoders.com/866/866198.jpg");
+}
+
+.pack-viaje2-c {
+  background-image: url("../images/patagonia.jpeg");
+}
+
+.pack-viaje3-c {
+  background-image: url("../images/egipto.jpeg");
 }
 
 .titulo-pack-span-c {
@@ -910,6 +916,46 @@ body.version-c {
 }
 
 .container-imagen-pack-c .pack-viaje1-c .precio-pack {
+  margin: 0;
+  padding: 6px 10px;
+  background: #1f4e54;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.container-imagen-pack-c .pack-viaje2-c .titulo-pack {
+  margin: 6px 0 20px 0;
+  color: white;
+  font-size: 1.2rem;
+  text-align: left;
+}
+
+.container-imagen-pack-c .pack-viaje2-c .descripcion-pack-c {
+  margin: 8px;
+  text-align: left;
+}
+
+.container-imagen-pack-c .pack-viaje2-c .precio-pack {
+  margin: 0;
+  padding: 6px 10px;
+  background: #1f4e54;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.container-imagen-pack-c .pack-viaje3-c .titulo-pack {
+  margin: 6px 0 20px 0;
+  color: white;
+  font-size: 1.2rem;
+  text-align: left;
+}
+
+.container-imagen-pack-c .pack-viaje3-c .descripcion-pack-c {
+  margin: 8px;
+  text-align: left;
+}
+
+.container-imagen-pack-c .pack-viaje3-c .precio-pack {
   margin: 0;
   padding: 6px 10px;
   background: #1f4e54;
@@ -989,6 +1035,13 @@ body.version-c {
   cursor: pointer;
   font-size: 14px;
   line-height: 20px;
+}
+
+/* BREAKPOINT ESPECIAL PARA TEXTO DESCRIPCIÓN PACK*/
+@media (max-width: 1070px) {
+  .parrafo-desc-pack-c {
+    font-size: 0.95rem;
+  }
 }
 
 /* BREAKPOINT ESPECIAL PARA ELEMENTOS PEQUEÑOS*/

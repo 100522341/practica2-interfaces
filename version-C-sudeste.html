@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style/style.css">
+  <link rel="icon" type="image/x-icon" href="images/logo_web.JPG">
+  <title>Mochileros viajeros</title>
+</head>
+
+<body class="version-c">
+  <header class="cabecera_ajustada">
+    <div class="cabecera-left">
+      <h1>Mochileros viajeros</h1>
+    </div>
+
+    <nav class="cabecera-center" aria-label="Navegación principal">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="#">Experiencias</a></li>
+        <li><a href="#">Consejos</a></li>
+        <li><a href="#">Foro</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <div class="cabecera-right">
+      <img src="images/logo_web.JPG" class="logo-cabecera" alt="Logo">
+      <label for="idioma">Idioma</label>
+      <select id="idioma" name="idioma">
+        <option value="es" selected>ES</option>
+        <option value="en">EN</option>
+        <option value="fr">FR</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="cuerpo_C">
+    <div class="col-izq_C">
+      <div class="caja_C container-imagen-pack-c">
+        <div class="packs-viajes-c">
+          <article class="pack-viaje1-c">
+            <h2 class="titulo-pack">
+              <span class="titulo-pack-span-c">Pack Sudeste Asiático</span>
+            </h2>
+            <p class="descripcion-pack-c">
+              <span class="span-descripcion-pack">¡Hostal y guía ahora incluidos!</span>
+            </p>
+            <footer class="container-compra-pack">
+              <p class="precio-pack">999€</p>
+            </footer>
+          </article>
+        </div>
+      </div>
+
+      <section class="caja_C izq-grande-2_C">
+        <h2 class="titulo-desc-pack-c">Descripción del pack</h2>
+        <p class="parrafo-desc-pack-c">
+          Este pack es lo último en innovación de viajes. Sus increíbles
+          visitas, junto a su excelente relación calidad-precio, no tienen
+          nada que envidiar a otros paquetes turísticos. En esta auténtica
+          aventura por el sudeste asiático podrás descubrir innumerables
+          monumentos, tradiciones y culturas que jamás has visto, además de
+          disfrutar de algunos de los paisajes y atardeceres más hermosos del
+          mundo.El pack incluye todo lo necesario para tu comodidad:
+          alojamiento, vuelo y mucho más. No te arrepentirás de hacer clic en
+          Comprar y vivir esta experiencia única.
+        </p>
+      </section>
+    </div>
+
+    <aside class="col-der_C">
+      <div class="caja_C der-vertical_C">
+        <h2 class="titulo-version-c">Registro de nuevos usuarios</h2>
+        <form class="formC">
+          <fieldset class="formC-top">
+            <div class="campo">
+              <p class="parrafo-form-c">Nombre completo</p>
+              <input type="text" id="nombreC" name="nombreC">
+            </div>
+
+            <div class="campo correo">
+              <p class="parrafo-form-c">Correo electrónico</p>
+              <input type="email" id="correoC" name="correoC">
+            </div>
+            <div class="select-tarjeta">
+              <p class="parrafo-form-c">Tipo de tarjeta</p>
+              <select id="tarjeta" name="tarjeta">
+                <option value="visa" selected>VISA</option>
+                <option value="mc">MASTERCARD</option>
+                <option value="euro">EUROCAJA</option>
+              </select>
+            </div>
+          </fieldset>
+          <fieldset class="formC-mid">
+            <div class="campo">
+              <p class="parrafo-form-c">Número de tarjeta</p>
+              <input type="text" id="loginC" name="loginC">
+            </div>
+            <div class="campo">
+              <p class="parrafo-form-c">Nombre del titular</p>
+              <input type="password" id="passwordC" name="passwordC">
+            </div>
+          </fieldset>
+          <fieldset class="formC-bottom">
+            <div class="campo2">
+              <p class="parrafo-form-c">Fecha de caducidad</p>
+              <input type="date" id="fechaC" name="fechaC">
+            </div>
+
+            <div class="campo2">
+              <p class="parrafo-form-c">Código CVV</p>
+              <input type="number" id="cvvC" name="cvvC">
+            </div>
+          </fieldset>
+          <footer class="acciones">
+            <button type="submit">Comprar</button>
+            <button type="reset">Borrar</button>
+          </footer>
+        </form>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="pie">
+    <p class="footer-left">@Mochileros viajeros 2025</p>
+    <div class="footer-center">
+      <nav class="enlaces-footer">
+        <a href="#">Sobre nosotros</a>
+        <a href="#">Política de Privacidad</a>
+        <a href="#">Ayuda</a>
+      </nav>
+
+      <form class="formulario-newsletter">
+        <div class="caja-newsletter">
+          <h1 class="newsletter-titulo">Suscríbete a nuestra Newsletter</h1>
+          <input type="email" placeholder="example@gmail.com" id="correo-electronico">
+          <button class="check-button">&#10003;</button>
+        </div>
+      </form>
+    </div>
+    <div class="footer-right">
+      <a href="#" class="link-logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" class="logo" alt="Instagram">
+      </a>
+      <a href="#" class="link-logo">
+        <img
+          src="https://static.vecteezy.com/system/resources/previews/021/495/942/non_2x/tiktok-logo-icon-free-png.png"
+          class="logo" alt="Tiktok">
+      </a>
+      <a href="#" class="link-logo">
+        <img src="https://img.icons8.com/?size=512&id=108794&format=png" class="logo youtube" alt="Yotube">
+      </a>
+    </div>
+  </footer>
+  <script src="script/script_versionC.js"></script>
+</body>
+
+</html>
