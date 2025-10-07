@@ -105,7 +105,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url("../imagenes/fondo-para-slogan.jpg");
+  background-image: url("../images/fondo-para-slogan.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -178,6 +178,7 @@ body {
   text-align: center;
   text-decoration: none;
 }
+
 .pack-viaje1,
 .pack-viaje2,
 .pack-viaje3 {
@@ -190,6 +191,8 @@ body {
   background-position: center;
   color: white;
   position: relative;
+
+  display: none; /* oculto por defecto */
 }
 
 .pack-viaje1 {
@@ -202,6 +205,27 @@ body {
 
 .pack-viaje3 {
   background-image: url("../images/egipto.jpeg");
+}
+
+.pack-viaje1.visible,
+.pack-viaje2.visible,
+.pack-viaje3.visible {
+  display: block;
+  opacity: 1;
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1.3s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.3;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .titulo-pack {
@@ -1016,7 +1040,9 @@ body.version-c {
     margin: 0;
   }
 
-  .pack-viaje1 {
+  .pack-viaje1,
+  .pack-viaje2,
+  .pack-viaje3 {
     min-height: 20rem;
   }
 
@@ -1146,16 +1172,15 @@ body.version-c {
     gap: 0.5rem;
   }
 
-  /* Packs: ocupa todo */
-  .packs-viajes {
-    flex-direction: column;
-  }
-  .pack-viaje1 {
+  .pack-viaje1,
+  .pack-viaje2,
+  .pack-viaje3 {
     width: 100%;
     height: 12rem;
   }
+
   .flecha {
-    display: none; /* ocultamos flechas en el móvil */
+    height: 3rem;
   }
 
   /* Experiencias en 1 columna */
