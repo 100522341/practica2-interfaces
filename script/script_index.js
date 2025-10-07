@@ -15,6 +15,7 @@ const packViaje3 = document.querySelector(".pack-viaje3");
 /* ----Creamos variables de estado---- */
 let indiceActual = 0;
 let autoPlayTimer = 0;
+let pack = 0;
 
 /* ----Funciones del programa---- */
 
@@ -24,22 +25,25 @@ function mostrar_packs(indice) {
   packViaje2.classList.remove("visible", "fade");
   packViaje3.classList.remove("visible", "fade");
 
-  let pack;
-  if (indice === 0) pack = packViaje1;
-  else if (indice === 1) pack = packViaje2;
-  else if (indice === 2) pack = packViaje3;
+  if (indice === 0) {
+    packViaje1.classList.add("visible", "fade");
+  } else if (indice === 1) {
+    packViaje2.classList.add("visible", "fade");
+  } else if (indice === 2) {
+    packViaje3.classList.add("visible", "fade");
+  }
 
-  // Mostrar pack y activar fade
+  // Mostrar pack y activar animación fade
   pack.classList.add("visible", "fade");
 }
 
 function iniciar_autoplay_packs() {
   clearTimeout(autoPlayTimer);
 
-  // Luego creamos uno nuevo que espere 3 segundos
+  // Hacemos que ocurra la acción cada 2 segundos
   autoPlayTimer = setTimeout(function () {
-    avanzar_pack(); // Después de 3 segundos, avanzar
-    iniciar_autoplay_packs(); // Y volver a empezar
+    avanzar_pack();
+    iniciar_autoplay_packs();
   }, 2000);
 }
 
