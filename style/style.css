@@ -178,18 +178,33 @@ body {
   text-align: center;
   text-decoration: none;
 }
-.pack-viaje1 {
+.pack-viaje1,
+.pack-viaje2,
+.pack-viaje3 {
   align-self: stretch;
   flex: 1;
   height: 100%;
   border-radius: 3rem;
-  background-image: url("https://images8.alphacoders.com/866/866198.jpg");
+
   background-size: cover;
   background-position: center;
   color: white;
   position: relative;
 }
-.pack-viaje1 h3 {
+
+.pack-viaje1 {
+  background-image: url("https://images8.alphacoders.com/866/866198.jpg");
+}
+
+.pack-viaje2 {
+  background-image: url("../images/patagonia.jpeg");
+}
+
+.pack-viaje3 {
+  background-image: url("../images/egipto.jpeg");
+}
+
+.titulo-pack {
   color: white;
   text-align: left;
   margin-left: 5%;
