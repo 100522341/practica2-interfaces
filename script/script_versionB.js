@@ -109,8 +109,10 @@ function agregar_consejo() {
   const titulo = tituloConsejo.value.trim();
   const descripcion = descripcionConsejo.value.trim();
 
-  if (!titulo || !descripcion) {
-    alert("Debes escribir un título y un consejo");
+  if (!validar_formato_consejos(titulo, descripcion)) {
+    alert(
+      "El título debe tener al menos 15 caracteres y la descripción al menos 30. El título solo puede contener letras, no símbolos ni números."
+    );
     return;
   }
 
@@ -118,7 +120,7 @@ function agregar_consejo() {
     localStorage.getItem("arrayConsejos") || "[]"
   );
 
-  arrayConsejos.push({ titulo, descripcion });
+  arrayConsejos.unshift({ titulo, descripcion });
 
   localStorage.setItem("arrayConsejos", JSON.stringify(arrayConsejos));
 
@@ -126,10 +128,10 @@ function agregar_consejo() {
   tituloConsejo.value = "";
   descripcionConsejo.value = "";
 
-  mostrarUltimosConsejos();
+  mostrar_ultimos_consejos();
 }
 
-function mostrarUltimosConsejos() {
+function mostrar_ultimos_consejos() {
   // Limpiamos la lista de consejos
   listaConsejos.innerHTML = "";
   const arrayConsejos = JSON.parse(
@@ -137,7 +139,7 @@ function mostrarUltimosConsejos() {
   );
 
   // Reverse para mostrar el consejo más reciente primero
-  const ultimosTres = arrayConsejos.slice(-3).reverse();
+  const ultimosTres = arrayConsejos.slice(0, 3);
 
   for (let i = 0; i < ultimosTres.length; i++) {
     const consejo = ultimosTres[i];
@@ -148,6 +150,23 @@ function mostrarUltimosConsejos() {
 
     listaConsejos.appendChild(li);
   }
+}
+
+function validar_formato_consejos(titulo, descripcion) {
+  return validar_titulo_consejo(titulo) && validar_desc_consejo(descripcion);
+}
+
+function validar_titulo_consejo(titulo) {
+  return titulo.length >= 15 && solo_letras(titulo);
+}
+
+function validar_desc_consejo(descripcion) {
+  return descripcion.length >= 30;
+}
+
+function solo_letras(texto) {
+  const regex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+  return regex.test(texto);
 }
 
 /* ----Acciones del programa: valores iniciales y eventos---- */
@@ -166,4 +185,4 @@ btnModalConfirmar.addEventListener("click", modal_confirmar);
 
 // Consejos
 btnEnviarConsejo.addEventListener("click", agregar_consejo);
-document.addEventListener("DOMContentLoaded", mostrarUltimosConsejos);
+document.addEventListener("DOMContentLoaded", mostrar_ultimos_consejos);
