@@ -92,7 +92,7 @@ form.addEventListener('submit', (e) => {
 
 
   //Guardamos los datos del usuario en el localStorage
-  const usuarios = JSON.parse(localStorage.getItem('users') || '{}');//Carga los usuarios guardados o un JSON vacio si no hay
+  const usuarios = JSON.parse(localStorage.getItem('usuarios') || '{}');//Carga los usuarios guardados o un JSON vacio si no hay
   usuarios[usuario.login] = usuario;//Guarda o actualiza al usuario
   localStorage.setItem('usuarios', JSON.stringify(usuarios));//Actualiza el localStorage con todos los usuarios
   localStorage.setItem('sesion', JSON.stringify({ login: usuario.login }));//Guarda la sesion actual
