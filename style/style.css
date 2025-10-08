@@ -863,8 +863,43 @@ body.version-a {
   cursor: pointer;
 }
 
-#input-consejo {
+#titulo-consejo {
   width: 50%;
+}
+
+#enviar-consejo:hover {
+  background-color: #36b0a8;
+  transform: scale(1.1);
+}
+
+#enviar-consejo:active {
+  transform: scale(0.8);
+}
+
+.seccion-consejos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#lista-consejos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#lista-consejos li a {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 1.15rem;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+#lista-consejos li a:hover {
+  color: #005fa3; /* azul más oscuro al pasar el mouse */
+  border-bottom: 2px solid #005fa3; /* subrayado animado */
 }
 
 .calendario-B {

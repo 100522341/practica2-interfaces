@@ -1,3 +1,4 @@
+"use strict";
 /* ----Seleccionamos los elementos del DOM---- */
 const flechaIzquierda = document.querySelector(".flecha-izquierda");
 const flechaDerecha = document.querySelector(".flecha-derecha");

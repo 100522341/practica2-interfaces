@@ -1,3 +1,4 @@
+"use strict";
 /* ----Seleccionamos los elementos del DOM---- */
 const form = document.getElementById("formA");
 const politica = document.getElementById("politica");

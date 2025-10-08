@@ -1,3 +1,4 @@
+"use strict";
 /* ----Seleccionamos los elementos del DOM---- */
 // Carrusel
 const flechaIzquierda = document.querySelector(".flecha-izquierda");
@@ -15,13 +16,18 @@ const btnModalCancelar = document.querySelector(
 const btnModalConfirmar = document.querySelector(
   ".modal-confirmacion .btn-confirmar"
 );
+// Consejos
+const tituloConsejo = document.getElementById("titulo-consejo");
+const descripcionConsejo = document.getElementById("descripcion-consejo");
+const btnEnviarConsejo = document.getElementById("enviar-consejo");
+const listaConsejos = document.getElementById("lista-consejos");
+
 /* ----Creamos variables de estado---- */
-//Carrusel
+// Carrusel
 let indiceActual = 0;
 let autoPlayTimer = setInterval(avanzar_pack, 2000);
 let pack = 0;
-//Cerrar sesion
-let decision;
+// Cerrar sesion
 let scrollPosY = 0;
 let scrollPosX = 0;
 
@@ -98,16 +104,66 @@ function modal_confirmar() {
   window.location.href = "index.html";
 }
 
+// Sección últimos consejos
+function agregar_consejo() {
+  const titulo = tituloConsejo.value.trim();
+  const descripcion = descripcionConsejo.value.trim();
+
+  if (!titulo || !descripcion) {
+    alert("Debes escribir un título y un consejo");
+    return;
+  }
+
+  const arrayConsejos = JSON.parse(
+    localStorage.getItem("arrayConsejos") || "[]"
+  );
+
+  arrayConsejos.push({ titulo, descripcion });
+
+  localStorage.setItem("arrayConsejos", JSON.stringify(arrayConsejos));
+
+  // "Limpiamos" para meter nuevos consejos
+  tituloConsejo.value = "";
+  descripcionConsejo.value = "";
+
+  mostrarUltimosConsejos();
+}
+
+function mostrarUltimosConsejos() {
+  // Limpiamos la lista de consejos
+  listaConsejos.innerHTML = "";
+  const arrayConsejos = JSON.parse(
+    localStorage.getItem("arrayConsejos") || "[]"
+  );
+
+  // Reverse para mostrar el consejo más reciente primero
+  const ultimosTres = arrayConsejos.slice(-3).reverse();
+
+  for (let i = 0; i < ultimosTres.length; i++) {
+    const consejo = ultimosTres[i];
+
+    const li = document.createElement("li");
+    li.innerHTML =
+      '<a href="consejo' + (i + 1) + '.html">' + consejo.titulo + "</a>";
+
+    listaConsejos.appendChild(li);
+  }
+}
+
 /* ----Acciones del programa: valores iniciales y eventos---- */
 
 // Mostramos el primer pack al cargar sin animación
 packViaje1.classList.add("visible");
 
+// Carrusel
 flechaDerecha.addEventListener("click", avanzar_pack);
-
 flechaIzquierda.addEventListener("click", retroceder_pack);
 
+// Modal cerrar sesión
 btnCerrarSesion.addEventListener("click", open_modal);
-
 btnModalCancelar.addEventListener("click", modal_cancelar);
 btnModalConfirmar.addEventListener("click", modal_confirmar);
+
+// Consejos
+btnEnviarConsejo.addEventListener("click", agregar_consejo);
+document.addEventListener("DOMContentLoaded", mostrarUltimosConsejos);
