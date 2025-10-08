@@ -14,7 +14,7 @@ const packViaje3 = document.querySelector(".pack-viaje3");
 
 /* ----Creamos variables de estado---- */
 let indiceActual = 0;
-let autoPlayTimer = 0;
+let autoPlayTimer = setInterval(avanzar_pack, 2000);
 let pack = 0;
 
 /* ----Funciones del programa---- */
@@ -32,29 +32,23 @@ function mostrar_packs(indice) {
   } else if (indice === 2) {
     packViaje3.classList.add("visible", "fade");
   }
-
-  // Mostrar pack y activar animación fade
-  pack.classList.add("visible", "fade");
-}
-
-function iniciar_autoplay_packs() {
-  clearTimeout(autoPlayTimer);
-
-  // Hacemos que ocurra la acción cada 2 segundos
-  autoPlayTimer = setTimeout(function () {
-    avanzar_pack();
-    iniciar_autoplay_packs();
-  }, 2000);
 }
 
 function avanzar_pack() {
   indiceActual = (indiceActual + 1) % 3;
   mostrar_packs(indiceActual);
+  reiniciar_intervalo();
 }
 
 function retroceder_pack() {
   indiceActual = (indiceActual - 1 + 3) % 3;
   mostrar_packs(indiceActual);
+  reiniciar_intervalo();
+}
+
+function reiniciar_intervalo() {
+  clearInterval(autoPlayTimer);
+  autoPlayTimer = setInterval(avanzar_pack, 2000);
 }
 
 /* ----Acciones del programa: valores iniciales y eventos---- */
@@ -62,15 +56,6 @@ function retroceder_pack() {
 // Mostramos el primer pack al cargar sin animación
 packViaje1.classList.add("visible");
 
-// Iniciamos el contador de los packs
-iniciar_autoplay_packs();
+flechaDerecha.addEventListener("click", avanzar_pack);
 
-flechaDerecha.addEventListener("click", function () {
-  avanzar_pack();
-  iniciar_autoplay_packs(); // Reiniciar la espera
-});
-
-flechaIzquierda.addEventListener("click", function () {
-  retroceder_pack();
-  iniciar_autoplay_packs(); // Reiniciar la espera
-});
+flechaIzquierda.addEventListener("click", retroceder_pack);
