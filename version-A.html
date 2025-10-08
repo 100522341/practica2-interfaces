@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,11 +10,13 @@
   <title>Mochileros viajeros</title>
 </head>
 
+
 <body class="version-a">
   <header class="cabecera_ajustada">
     <div class="cabecera-left">
       <h1>Mochileros viajeros</h1>
     </div>
+
 
     <nav class="cabecera-center" aria-label="Navegación principal">
       <ul>
@@ -24,6 +27,7 @@
         <li><a href="#">Contacto</a></li>
       </ul>
     </nav>
+
 
     <div class="cabecera-right">
       <img src="images/logo_web.JPG" class="logo-cabecera" alt="Logo">
@@ -36,52 +40,59 @@
     </div>
   </header>
 
+
   <main class="cuerpo_A">
     <div class="contenedor_A">
       <div class="caja_A">
         <h2 class="titulo-caja-a">Registro de nuevos usuarios</h2>
-        <form class="formA">
+        <form id="formA" class="formA">
           <fieldset class="formA-top">
             <div class="campo">
-              <p class="parrafo-form-a">Nombre</p>
-              <input type="text" id="nombre" name="nombre">
+              <label for="nombre" class="parrafo-form-a">Nombre</label>
+              <input type="text" id="nombre" name="nombre" required minlength="3">
             </div>
 
-            <div class="campo">
-              <p class="parrafo-form-a">Apellidos</p>
-              <input type="text" id="apellidos" name="apellidos">
-            </div>
 
             <div class="campo">
-              <p class="parrafo-form-a">Correo electrónico</p>
-              <input type="email" id="correo" name="correo">
+              <label for="apellidos" class="parrafo-form-a">Apellidos</label>
+              <input type="text" id="apellidos" name="apellidos" required pattern="^[A-Za-z]{3,}\s+[A-Za-z]{3,}" title="Debes poner al menos dos apellido con 3 letras">
             </div>
 
+
             <div class="campo">
-              <p class="parrafo-form-a">Confirmar correo</p>
-              <input type="email" id="correo2" name="correo2">
+              <label for="correo" class="parrafo-form-a">Correo electrónico</label>
+              <input type="email" id="correo" name="correo" required>
+            </div>
+
+
+            <div class="campo">
+              <label for="correo2" class="parrafo-form-a">Confirmar correo</label>
+              <input type="email" id="correo2" name="correo2" required>
             </div>
           </fieldset>
           <fieldset class="formA-fecha-nac">
             <div class="campo">
-              <p class="parrafo-form-a">Fecha de nacimiento</p>
-              <input type="date" id="fecha" name="fecha">
+              <label for="fecha" class="parrafo-form-a">Fecha de nacimiento</label>
+              <input type="date" id="fecha" name="fecha" required>
             </div>
           </fieldset>
           <fieldset class="formA-bottom">
             <div class="campo">
-              <p class="parrafo-form-a">Login</p>
-              <input type="text" id="login" name="login">
+              <label for="login" class="parrafo-form-a">Login</label>
+              <input type="text" id="login" name="login" required minlength="5">
             </div>
             <div class="campo">
-              <p class="parrafo-form-a">Password</p>
-              <input type="password" id="password" name="password">
+              <label for="password" class="parrafo-form-a">Password</label>
+              <input type="password" id="password" name="password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=(?:.*\d){2,})(?=.*[^A-Za-z0-9]).{8,}$" title="La contraseña debe tener longitud 8 como minimo y ademas tener 2 numero 1 carcater especial una minuscula y una mayuscula">
             </div>
           </fieldset>
 
-          <p class="parrafo-bottom-form-a">Subir imagen de perfil</p>
+
+          <label for="imagen" class="parrafo-bottom-form-a">Subir imagen de perfil</label>
           <label for="imagen" class="subir-archivo">Examinar...</label>
-          <input type="file" id="imagen" name="imagen" style="display: none">
+          <input type="file" id="imagen" name="imagen" style="display: none" accept=".webp,.png,.jpg,image/webp,image/png,image/jpeg">
+
+
 
 
           <footer class="acciones-form">
@@ -89,12 +100,13 @@
               <input type="checkbox" id="politica" name="politica">
               Acepto la <a href="#">política de privacidad</a>
             </label>
-            <a href="version-B.html" class="boton">Guardar datos y acceder</a>
+            <button id="btn-guardar" class="boton" type="submit" disabled>Guardar datos y acceder</button>
           </footer>
         </form>
       </div>
     </div>
   </main>
+
 
   <footer class="pie">
     <p class="footer-left">@Mochileros viajeros 2025</p>
@@ -105,11 +117,12 @@
         <a href="#">Ayuda</a>
       </nav>
 
+
       <form class="formulario-newsletter">
         <div class="caja-newsletter">
           <h1 class="newsletter-titulo">Suscríbete a nuestra Newsletter</h1>
           <input type="email" placeholder="example@gmail.com" id="correo-electronico">
-          <button class="check-button">&#10003;</button>
+          <button class="check-button" type="button">&#10003;</button>
         </div>
       </form>
     </div>
