@@ -6,13 +6,22 @@ const packsViajes = document.querySelector(".packs-viajes");
 const packViaje1 = document.querySelector(".pack-viaje1");
 const packViaje2 = document.querySelector(".pack-viaje2");
 const packViaje3 = document.querySelector(".pack-viaje3");
-// Resto
+// Cerrar sesion
 const btnCerrarSesion = document.querySelector(".boton-cerrar-B");
-
+const modalCerrarSesion = document.querySelector(".modal-confirmacion");
+const btnModalCancelar = document.querySelector(
+  ".modal-confirmacion .btn-cancelar"
+);
+const btnModalConfirmar = document.querySelector(
+  ".modal-confirmacion .btn-confirmar"
+);
 /* ----Creamos variables de estado---- */
+//Carrusel
 let indiceActual = 0;
 let autoPlayTimer = setInterval(avanzar_pack, 2000);
 let pack = 0;
+//Cerrar sesion
+let decision;
 
 /* ----Funciones del programa---- */
 
@@ -48,6 +57,10 @@ function reiniciar_intervalo() {
   autoPlayTimer = setInterval(avanzar_pack, 2000);
 }
 
+function popup_cerrar_sesion() {
+  modalCerrarSesion.classList.add("modal-visible");
+}
+
 /* ----Acciones del programa: valores iniciales y eventos---- */
 
 // Mostramos el primer pack al cargar sin animación
@@ -56,3 +69,5 @@ packViaje1.classList.add("visible");
 flechaDerecha.addEventListener("click", avanzar_pack);
 
 flechaIzquierda.addEventListener("click", retroceder_pack);
+
+btnCerrarSesion.addEventListener("click", popup_cerrar_sesion);
