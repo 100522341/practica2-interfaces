@@ -22,8 +22,12 @@ let autoPlayTimer = setInterval(avanzar_pack, 2000);
 let pack = 0;
 //Cerrar sesion
 let decision;
+let scrollPosY = 0;
+let scrollPosX = 0;
 
 /* ----Funciones del programa---- */
+
+// Carrusel
 
 function mostrar_packs(indice) {
   // Quitar clases visible y fade de todos
@@ -57,8 +61,41 @@ function reiniciar_intervalo() {
   autoPlayTimer = setInterval(avanzar_pack, 2000);
 }
 
-function popup_cerrar_sesion() {
-  modalCerrarSesion.classList.add("modal-visible");
+// Modal cerrar sesión
+
+function open_modal() {
+  bloquear_vista();
+  modalCerrarSesion.classList.toggle("modal-visible");
+}
+
+function bloquear_vista() {
+  // Guardar posición actual
+  scrollPosX = window.scrollX;
+  scrollPosY = window.scrollY;
+
+  // Bloquear scroll
+  window.onscroll = function () {
+    window.scrollTo(scrollPosX, scrollPosY);
+  };
+
+  // Bloquear también con CSS
+  document.body.style.overflow = "hidden";
+}
+
+function desbloquear_vista() {
+  window.onscroll = null;
+  document.body.style.overflow = "";
+}
+
+function modal_cancelar() {
+  modalCerrarSesion.classList.toggle("modal-visible");
+  desbloquear_vista();
+}
+
+function modal_confirmar() {
+  modalCerrarSesion.classList.toggle("modal-visible");
+  desbloquear_vista();
+  window.location.href = "index.html";
 }
 
 /* ----Acciones del programa: valores iniciales y eventos---- */
@@ -70,4 +107,7 @@ flechaDerecha.addEventListener("click", avanzar_pack);
 
 flechaIzquierda.addEventListener("click", retroceder_pack);
 
-btnCerrarSesion.addEventListener("click", popup_cerrar_sesion);
+btnCerrarSesion.addEventListener("click", open_modal);
+
+btnModalCancelar.addEventListener("click", modal_cancelar);
+btnModalConfirmar.addEventListener("click", modal_confirmar);
