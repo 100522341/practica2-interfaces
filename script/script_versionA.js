@@ -26,7 +26,7 @@ function validar_email(email) {
 }
 
 function validar_password(pass) {
-  // 8+ carcateres, ≥2 dígitos, 1 mayúscula, 1 minúscula, 1 especial
+  // 8+ caracteres, ≥2 dígitos, 1 mayúscula, 1 minúscula, 1 especial
   const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=(?:.*\d){2,})(?=.*[^A-Za-z0-9]).{8,}$/;
   return regex.test(pass);
 }
