@@ -38,10 +38,3 @@ function reiniciar_intervalo() {
   clearInterval(autoPlayTimer);
   autoPlayTimer = setInterval(avanzar_pack, 2000);
 }
-
-/* ----Acciones del programa: valores iniciales y eventos---- */
-
-packViaje1.classList.add("visible");
-
-flechaDerecha.addEventListener("click", avanzar_pack);
-flechaIzquierda.addEventListener("click", retroceder_pack);
