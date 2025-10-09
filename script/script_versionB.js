@@ -1,12 +1,14 @@
 "use strict";
+/* ----Imports---- */
+import {
+  flechaIzquierda,
+  flechaDerecha,
+  packViaje1,
+  avanzar_pack,
+  retroceder_pack,
+} from "./carrusel.js";
+
 /* ----Seleccionamos los elementos del DOM---- */
-// Carrusel
-const flechaIzquierda = document.querySelector(".flecha-izquierda");
-const flechaDerecha = document.querySelector(".flecha-derecha");
-const packsViajes = document.querySelector(".packs-viajes");
-const packViaje1 = document.querySelector(".pack-viaje1");
-const packViaje2 = document.querySelector(".pack-viaje2");
-const packViaje3 = document.querySelector(".pack-viaje3");
 // Cerrar sesion
 const btnCerrarSesion = document.querySelector(".boton-cerrar-B");
 const modalCerrarSesion = document.querySelector(".modal-confirmacion");
@@ -23,10 +25,6 @@ const btnEnviarConsejo = document.getElementById("enviar-consejo");
 const listaConsejos = document.getElementById("lista-consejos");
 
 /* ----Creamos variables de estado---- */
-// Carrusel
-let indiceActual = 0;
-let autoPlayTimer = setInterval(avanzar_pack, 2000);
-let pack = 0;
 // Cerrar sesion
 let scrollPosY = 0;
 let scrollPosX = 0;
@@ -34,7 +32,7 @@ let scrollPosX = 0;
 /* ----Funciones del programa---- */
 
 // Carrusel
-
+/*
 function mostrar_packs(indice) {
   // Quitar clases visible y fade de todos
   packViaje1.classList.remove("visible", "fade");
@@ -66,7 +64,7 @@ function reiniciar_intervalo() {
   clearInterval(autoPlayTimer);
   autoPlayTimer = setInterval(avanzar_pack, 2000);
 }
-
+*/
 // Modal cerrar sesión
 
 function open_modal() {
