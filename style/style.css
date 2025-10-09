@@ -478,12 +478,21 @@ body {
   justify-content: center;
   transition: background-color 0.3s, transform 0.2s;
 }
-.check-button:hover {
+
+.interactive-button:hover {
   background-color: #36b0a8; /* cambio de color al pasar el cursor */
   transform: scale(1.1);
 }
 
-.check-button:active {
+.interactive-button:active {
+  transform: scale(0.8);
+}
+
+.interactive-button-corazon:hover {
+  transform: scale(1.1);
+}
+
+.interactive-button-corazon:active {
   transform: scale(0.8);
 }
 
