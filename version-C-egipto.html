@@ -74,16 +74,16 @@
           <fieldset class="formC-top">
             <div class="campo">
               <p class="parrafo-form-c">Nombre completo</p>
-              <input type="text" id="nombreC" name="nombreC" required minlength="3">
+              <input type="text" id="nombreC" name="nombreC">
             </div>
 
             <div class="campo correo">
               <p class="parrafo-form-c">Correo electrónico</p>
-              <input type="email" id="correoC" name="correoC" required>
+              <input type="email" id="correoC" name="correoC">
             </div>
             <div class="select-tarjeta">
               <p class="parrafo-form-c">Tipo de tarjeta</p>
-              <select id="tarjeta" name="tarjeta" required>
+              <select id="tarjeta" name="tarjeta">
                 <option value="" selected>Selecciona una opción</option>
                 <option value="visa">VISA</option>
                 <option value="mc">MASTERCARD</option>
@@ -94,26 +94,22 @@
           <fieldset class="formC-mid">
             <div class="campo">
               <p class="parrafo-form-c">Número de tarjeta</p>
-              <input type="text" id="loginC" name="loginC" required
-                     inputmode="numeric"
-                     pattern="^(?:\d{13}|\d{15}|\d{16}|\d{19})$"
-                     title="Debe contener 13, 15, 16 o 19 dígitos">
+              <input type="text" id="loginC" name="loginC">
             </div>
             <div class="campo">
               <p class="parrafo-form-c">Nombre del titular</p>
-              <input type="text" id="passwordC" name="passwordC" required minlength="3">
+              <input type="text" id="passwordC" name="passwordC">
             </div>
           </fieldset>
           <fieldset class="formC-bottom">
             <div class="campo2">
               <p class="parrafo-form-c">Fecha de caducidad</p>
-              <input type="date" id="fechaC" name="fechaC" required>
+              <input type="date" id="fechaC" name="fechaC">
             </div>
 
             <div class="campo2">
               <p class="parrafo-form-c">Código CVV</p>
-              <input type="text" id="cvvC" name="cvvC" required
-                     inputmode="numeric" pattern="^\d{3}$" title="3 dígitos">
+              <input type="text" id="cvvC" name="cvvC">
             </div>
           </fieldset>
           <footer class="acciones">

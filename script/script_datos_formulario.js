@@ -1,0 +1,1 @@
+/*Aqui combinaremos lo que se repita a la hora de introducir los datos del usuario*/

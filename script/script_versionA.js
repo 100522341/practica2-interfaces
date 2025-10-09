@@ -1,108 +1,141 @@
 "use strict";
-/* ----Seleccionamos los elementos del DOM---- */
-const form = document.getElementById("formA");
-const politica = document.getElementById("politica");
-const boton = document.getElementById("btn-guardar");
-const nombre = document.getElementById("nombre");
-const apellidos = document.getElementById("apellidos");
-const correo = document.getElementById("correo");
-const correo2 = document.getElementById("correo2");
-const fecha = document.getElementById("fecha");
-const login = document.getElementById("login");
-const password = document.getElementById("password");
-const imagen = document.getElementById("imagen");
+
+/* ===== Selección de elementos ===== */
+const form      = document.getElementById('formA');
+const nombre    = document.getElementById('nombre');
+const apellidos = document.getElementById('apellidos');
+const correo    = document.getElementById('correo');
+const correo2   = document.getElementById('correo2');
+const fecha     = document.getElementById('fecha');
+const login     = document.getElementById('login');
+const password  = document.getElementById('password');
+const imagen    = document.getElementById('imagen');
+const politica  = document.getElementById('politica');
+const boton     = document.getElementById('btn-guardar');
 
 /* ----Funciones del programa---- */
+function solo_letras(texto) {
+  const regex = /^[a-zA-ZñÑ\s]+$/;
+  return regex.test(texto);
+}
 
-// Activación del botón
+function validar_email(email) {
+  // formato básico nombre@dominio.extension
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email);
+}
 
+function validar_password(pass) {
+  // 8+ carcateres, ≥2 dígitos, 1 mayúscula, 1 minúscula, 1 especial
+  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=(?:.*\d){2,})(?=.*[^A-Za-z0-9]).{8,}$/;
+  return regex.test(pass);
+}
+// Botón guardar datos activo si se acepta la política
 function activarBoton() {
-  //Funcion que activa el boton guardar si esta marcada la casilla politica de privacidad
   boton.disabled = !politica.checked;
 }
 
-// Impedir fechas no válidas
+// Fecha de nacimiento
+function setMaxFechaHoy() {
+  const diaHoy = new Date().toISOString().slice(0, 10);
+  if (fecha) fecha.setAttribute('max', diaHoy);
+};
 
-function establecerFechaMax() {
-  // Establece el atributo max de la fecha a YYYY-MM-DD de hoy (date obtiene la fecha,to string lo pasa a str,y slice obtiene la fecha que son solo los 10 primeros caracteres)
-  const fechaMax = new Date().toISOString().slice(0, 10);
-  if (fecha) {
-    fecha.setAttribute("max", fechaMax);
-  }
-}
 
-// Correos iguales
+/* ----Acciones del programa--- */
+politica.addEventListener('change', activarBoton);
+activarBoton(); // El boton guardar datos se desactiva
 
-function correosCoinciden() {
-  return correo.value.trim() === correo2.value.trim(); //El crreo debe ser igual a "confirmar correo"
-}
+form.addEventListener('submit', function (event) {
+  event.preventDefault();//Proporciona los errores al pulsar el boton guardar datos
 
-/* ----Acciones del programa: valores iniciales y eventos---- */
-
-//Cada vez que el usuario marque o desmarque se ejecuta la funcion activar boton
-politica.addEventListener("change", activarBoton);
-activarBoton();
-
-// Imágenes permitidas
-imagen.addEventListener("change", function() {
-  //Evento que se activa cuando el usuario añade el archivo
-  const archivo = imagen.files[0]; //Archivo subido por el usuario
-  if (
-    archivo &&
-    ["image/webp", "image/png", "image/jpeg"].includes(archivo.type)
-  )
-    return; //Si hay archivo subido y su tipo se permite no se muestra alerta,en caso contrario si
-  alert("Formato de imagen no adminitido");
-  imagen.value = ""; //Si el formato no es valido borra el archibo subido
-});
-
-// Requisitos para el submit
-//Cuando el usuario interactua con el formulario no deja que lo envie hasta controlar todos los campos
-form.addEventListener("submit", function(event) {
-  event.preventDefault();
-
-  //Aceptar politica de privacidad
+  // Política
   if (!politica.checked) {
-    alert("Debes aceptar la política de privacidad.");
+    alert('Debes aceptar la política de privacidad.');
+    politica.focus();
     return;
   }
 
-  //Se encarga de que se cumplan los minlegth,pattern etc de version-A.html
-  if (!form.checkValidity()) {
-    form.reportValidity();
+  // Nombre
+  const nom = nombre.value.trim();
+  if (nom.length < 3 || !solo_letras(nom)) {
+    alert('El nombre debe tener al menos 3 letras y solo contener letras y espacios.');
+    nombre.focus();
     return;
   }
 
-  //Emails iguales
-  if (!correosCoinciden()) {
-    alert("Los correos no coinciden.");
+  // Apellidos
+  const apellido = apellidos.value.trim();
+  // Valida que haya al menos dos apellidos, cada uno con 3+ letras 
+  if (!/^[A-Za-zñÑ]{3,}\s+[A-Za-zñÑ]{3,}.*$/.test(apellido)) {
+    alert('Introduce al menos dos apellidos, cada uno con 3 o más letras.');
+    apellidos.focus();
+    return;
+  }
+
+  // Correo
+  const mail1 = correo.value.trim();
+  const mail2 = correo2.value.trim();
+  if (!validar_email(mail1)) {
+    alert('Correo electrónico no válido');
+    correo.focus();
+    return;
+  }
+  if (mail1 !== mail2) {
+    alert('Los correos no coinciden.');
     correo2.focus();
     return;
   }
 
-  //Debe subirse una imagen con el formato correcto
-  const archivo = imagen.files[0];
-  const fotoCorrecta =
-    archivo && ["image/webp", "image/png", "image/jpeg"].includes(archivo.type);
-  if (!fotoCorrecta) {
-    alert("Formato de imagen no admitido");
+  // Fecha de nacimiento (no futura)
+  const fechaHoy = fecha.value;
+  const hoy = new Date().toISOString().slice(0, 10);
+  if (!fechaHoy || fechaHoy > hoy) {
+    alert('Fecha de nacimiento no válida');
+    fecha.focus();
     return;
   }
 
-  //Construimos un objeto usuario con los valores introducidos
+  // Login
+  const log = login.value.trim();
+  if (log.length < 5) {
+    alert('El login debe tener al menos 5 caracteres.');
+    login.focus();
+    return;
+  }
+
+  // Password
+  const pass = password.value.trim();
+  if (!validar_password(pass)) {
+    alert('La contraseña debe tener 8 caracteres, al menos 2 números, 1 carácter especial, 1 mayúscula y 1 minúscula.');
+    password.focus();
+    return;
+  }
+
+  // Imagen (webp/png/jpg)
+  const file = imagen.files[0];
+  const tiposPermitidos = ['image/webp', 'image/png', 'image/jpeg'];
+  if (!file || !tiposPermitidos.includes(file.type)) {
+    alert('Selecciona una imagen válida (webp, png o jpg).');
+    imagen.focus();
+    return;
+  }
+
+  /*---------Guardado del usuario-------- */
+
+  // Construimos un objeto usuario con los valores introducidos
   const usuario = {
-    nombre: nombre.value.trim(), //Obtiene el texto que el usuario escribio y con trim eliminamos espacios innecesarios
-    apellidos: apellidos.value.trim(),
-    correo: correo.value.trim(),
-    login: login.value.trim(),
+    nombre: nom,
+    apellidos: ap,
+    correo: mail1,
+    login: log,
   };
 
-  //Guardamos los datos del usuario en el localStorage
-  const usuarios = JSON.parse(localStorage.getItem("usuarios") || "{}"); //Carga los usuarios guardados o un JSON vacio si no hay
-  usuarios[usuario.login] = usuario; //Guarda o actualiza al usuario
-  localStorage.setItem("usuarios", JSON.stringify(usuarios)); //Actualiza el localStorage con todos los usuarios
-  localStorage.setItem("sesion", JSON.stringify({ login: usuario.login })); //Guarda la sesion actual
+  // Guardamos los datos del usuario en el localStorage (diccionario por login)
+  const usuarios = JSON.parse(localStorage.getItem("usuarios") || "{}"); // Carga los usuarios guardados o un objeto vacío
+  usuarios[usuario.login] = usuario; // Guarda o actualiza al usuario
+  localStorage.setItem("usuarios", JSON.stringify(usuarios)); // Actualiza el localStorage con todos los usuarios
+  localStorage.setItem("sesion", JSON.stringify({ login: usuario.login })); // Guarda la sesión actual (clave 'sesion', como la usabas)
 
-  //Redirigimos a la version B
-  window.location.href = "version-B.html";
+  window.location.href = 'version-B.html';
 });

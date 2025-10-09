@@ -49,48 +49,48 @@
           <fieldset class="formA-top">
             <div class="campo">
               <label for="nombre" class="parrafo-form-a">Nombre</label>
-              <input type="text" id="nombre" name="nombre" required minlength="3">
+              <input type="text" id="nombre" name="nombre">
             </div>
 
 
             <div class="campo">
               <label for="apellidos" class="parrafo-form-a">Apellidos</label>
-              <input type="text" id="apellidos" name="apellidos" required pattern="^[A-Za-z]{3,}\s+[A-Za-z]{3,}" title="Debes poner al menos dos apellido con 3 letras">
+              <input type="text" id="apellidos" name="apellidos">
             </div>
 
 
             <div class="campo">
               <label for="correo" class="parrafo-form-a">Correo electrónico</label>
-              <input type="email" id="correo" name="correo" required>
+              <input type="email" id="correo" name="correo">
             </div>
 
 
             <div class="campo">
               <label for="correo2" class="parrafo-form-a">Confirmar correo</label>
-              <input type="email" id="correo2" name="correo2" required>
+              <input type="email" id="correo2" name="correo2">
             </div>
           </fieldset>
           <fieldset class="formA-fecha-nac">
             <div class="campo">
               <label for="fecha" class="parrafo-form-a">Fecha de nacimiento</label>
-              <input type="date" id="fecha" name="fecha" required>
+              <input type="date" id="fecha" name="fecha">
             </div>
           </fieldset>
           <fieldset class="formA-bottom">
             <div class="campo">
               <label for="login" class="parrafo-form-a">Login</label>
-              <input type="text" id="login" name="login" required minlength="5">
+              <input type="text" id="login" name="login">
             </div>
             <div class="campo">
               <label for="password" class="parrafo-form-a">Password</label>
-              <input type="password" id="password" name="password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=(?:.*\d){2,})(?=.*[^A-Za-z0-9]).{8,}$" title="La contraseña debe tener longitud 8 como minimo y ademas tener 2 numero 1 carcater especial una minuscula y una mayuscula">
+              <input type="password" id="password" name="password">
             </div>
           </fieldset>
 
 
           <label for="imagen" class="parrafo-bottom-form-a">Subir imagen de perfil</label>
           <label for="imagen" class="subir-archivo">Examinar...</label>
-          <input type="file" id="imagen" name="imagen" style="display: none" accept=".webp,.png,.jpg,image/webp,image/png,image/jpeg">
+          <input type="file" id="imagen" name="imagen" style="display: none">
 
 
 
@@ -100,7 +100,7 @@
               <input type="checkbox" id="politica" name="politica">
               Acepto la <a href="#">política de privacidad</a>
             </label>
-            <button id="btn-guardar" class="boton" type="submit" disabled>Guardar datos y acceder</button>
+            <button id="btn-guardar" class="boton" type="submit">Guardar datos y acceder</button>
           </footer>
         </form>
       </div>
