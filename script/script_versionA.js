@@ -44,7 +44,7 @@ politica.addEventListener("change", activarBoton);
 activarBoton();
 
 // Imágenes permitidas
-imagen.addEventListener("change", () => {
+imagen.addEventListener("change", function() {
   //Evento que se activa cuando el usuario añade el archivo
   const archivo = imagen.files[0]; //Archivo subido por el usuario
   if (
@@ -58,8 +58,8 @@ imagen.addEventListener("change", () => {
 
 // Requisitos para el submit
 //Cuando el usuario interactua con el formulario no deja que lo envie hasta controlar todos los campos
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
+form.addEventListener("submit", function(event) {
+  event.preventDefault();
 
   //Aceptar politica de privacidad
   if (!politica.checked) {

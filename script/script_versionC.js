@@ -23,8 +23,8 @@ function establecerFechaMin() {
 establecerFechaMin()
 /* ----Acciones del programa: valores iniciales y eventos---- */
 
-formC.addEventListener('submit', (e) => {
-  e.preventDefault();
+formC.addEventListener('submit', function(event) {
+  event.preventDefault();
 
   // required, type, minlength, pattern...
   if (!formC.checkValidity()) {
