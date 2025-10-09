@@ -430,6 +430,11 @@ body {
   color: #143c3c;
 }
 
+.texto-derecha span:hover {
+  color: #005fa3; /* azul más oscuro al pasar el mouse */
+  border-bottom: 2px solid #005fa3; /* subrayado animado */
+}
+
 .pie {
   flex: 0.5;
   margin-top: 10px;
