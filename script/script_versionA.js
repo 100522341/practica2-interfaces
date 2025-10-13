@@ -49,14 +49,14 @@ activarBoton(); // El boton guardar datos se desactiva
 form.addEventListener('submit', function (event) {
   event.preventDefault();//Proporciona los errores al pulsar el boton guardar datos
 
-  // Política
+  // Aceptar la politica de privacidad
   if (!politica.checked) {
     alert('Debes aceptar la política de privacidad.');
     politica.focus();
     return;
   }
 
-  // Nombre
+  // Longitud del nombre y que solo contenga letras
   const nom = nombre.value.trim();
   if (nom.length < 3 || !solo_letras(nom)) {
     alert('El nombre debe tener al menos 3 letras y solo contener letras y espacios.');
@@ -64,7 +64,7 @@ form.addEventListener('submit', function (event) {
     return;
   }
 
-  // Apellidos
+  // Dos apellidos con ciertos requisitos
   const apellido = apellidos.value.trim();
   // Valida que haya al menos dos apellidos, cada uno con 3+ letras 
   if (!/^[A-Za-zñÑ]{3,}\s+[A-Za-zñÑ]{3,}.*$/.test(apellido)) {
@@ -73,7 +73,7 @@ form.addEventListener('submit', function (event) {
     return;
   }
 
-  // Correo
+  // Los correos deben ser iguales
   const mail1 = correo.value.trim();
   const mail2 = correo2.value.trim();
   if (!validar_email(mail1)) {
@@ -87,7 +87,7 @@ form.addEventListener('submit', function (event) {
     return;
   }
 
-  // Fecha de nacimiento (no futura)
+  // Fecha de nacimiento que no sea posterior a la actual
   const fechaHoy = fecha.value;
   const hoy = new Date().toISOString().slice(0, 10);
   if (!fechaHoy || fechaHoy > hoy) {
