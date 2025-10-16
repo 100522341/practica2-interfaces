@@ -23,15 +23,18 @@ export function cvv_valido(v) {
 }
 
 /*Fechas*/
+/*Obtenemos el dia de hoy lo convertimos a string y nos quedamos los caracteres necesarios*/
 export function diaHoy() {
   return new Date().toISOString().slice(0, 10);
 }
 
+/*Si detecta un input,es decir se esta añadiendo una fecha esta no debe ser mayor al dia de hoy*/ 
 export function setMaxFecha(input) {
   if (input) 
     input.setAttribute("max", diaHoy());
 }
 
+/*Si detecta un input,es decir se esta añadiendo una fecha esta no debe ser menor al dia de hoy*/ 
 export function setMinFecha(input) {
   if (input) 
     input.setAttribute("min", diaHoy());
