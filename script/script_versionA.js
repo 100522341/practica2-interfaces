@@ -1,6 +1,13 @@
 "use strict";
+/* ----Imports---- */
+import {
+  solo_letras,
+  validar_email,
+  validar_password,
+  setMaxFecha,
+} from "./script_datos_formulario.js";
 
-/* ===== Selección de elementos ===== */
+/* ----Seleccionamos los elementos del DOM---- */
 const form      = document.getElementById('formA');
 const nombre    = document.getElementById('nombre');
 const apellidos = document.getElementById('apellidos');
@@ -13,33 +20,19 @@ const imagen    = document.getElementById('imagen');
 const politica  = document.getElementById('politica');
 const boton     = document.getElementById('btn-guardar');
 
-/* ----Funciones del programa---- */
-function solo_letras(texto) {
-  const regex = /^[a-zA-ZñÑ\s]+$/;
-  return regex.test(texto);
-}
-
-function validar_email(email) {
-  // formato básico nombre@dominio.extension
-  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return regex.test(email);
-}
-
-function validar_password(pass) {
-  // 8+ caracteres, ≥2 dígitos, 1 mayúscula, 1 minúscula, 1 especial
-  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=(?:.*\d){2,})(?=.*[^A-Za-z0-9]).{8,}$/;
-  return regex.test(pass);
-}
-// Botón guardar datos activo si se acepta la política
+/*Funciones el programa*/
 function activarBoton() {
   boton.disabled = !politica.checked;
 }
 
-// Fecha de nacimiento
-function setMaxFechaHoy() {
-  const diaHoy = new Date().toISOString().slice(0, 10);
-  if (fecha) fecha.setAttribute('max', diaHoy);
-};
+function activarFormulario() {
+  //Establece la fecha maxima en el dia de hoy
+  setMaxFecha(fecha);
+  //Activar o desactivar botón según si se acepta la política o no
+}
+// Llamas a la función al cargar
+activarFormulario();
+
 
 
 /* ----Acciones del programa--- */
@@ -126,7 +119,7 @@ form.addEventListener('submit', function (event) {
   // Construimos un objeto usuario con los valores introducidos
   const usuario = {
     nombre: nom,
-    apellidos: ap,
+    apellidos: apellido,
     correo: mail1,
     login: log,
   };
