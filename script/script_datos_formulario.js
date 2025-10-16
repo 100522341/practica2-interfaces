@@ -23,7 +23,7 @@ export function cvv_valido(v) {
 }
 
 /*Fechas*/
-function diaHoy() {
+export function diaHoy() {
   return new Date().toISOString().slice(0, 10);
 }
 
