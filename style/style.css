@@ -394,12 +394,22 @@ body {
   height: 1.5rem;
 }
 
+.botones-formulario-registro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
 .boton-registro {
   text-decoration: none;
+  border: none;
   color: white;
   background-color: #1f4e54;
-  padding: 0.2rem;
+  padding: 0.4rem;
   border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 .linea {
@@ -745,6 +755,7 @@ body.version-a {
   display: inline;
   position: fixed;
   padding-top: 3rem;
+  animation: aparecerModal 0.3s ease forwards;
 }
 
 .modal-confirmacion .contenido {
@@ -757,6 +768,16 @@ body.version-a {
   flex-direction: column;
   align-self: center;
   justify-self: center;
+}
+@keyframes aparecerModal {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .botones-modal {
