@@ -8,37 +8,29 @@ import {
 } from "./datos_form.js";
 
 /* ----Seleccionamos los elementos del DOM---- */
-const form      = document.getElementById('formA');
-const nombre    = document.getElementById('nombre');
-const apellidos = document.getElementById('apellidos');
-const correo    = document.getElementById('correo');
-const correo2   = document.getElementById('correo2');
-const fecha     = document.getElementById('fecha');
-const login     = document.getElementById('login');
-const password  = document.getElementById('password');
-const imagen    = document.getElementById('imagen');
-const politica  = document.getElementById('politica');
-const boton     = document.getElementById('btn-guardar');
+const form = document.getElementById("formA");
+const nombre = document.getElementById("nombre");
+const apellidos = document.getElementById("apellidos");
+const correo = document.getElementById("correo");
+const correo2 = document.getElementById("correo2");
+const fecha = document.getElementById("fecha");
+const login = document.getElementById("login");
+const password = document.getElementById("password");
+const imagen = document.getElementById("imagen");
+const politica = document.getElementById("politica");
+const boton = document.getElementById("btn-guardar");
 
-/*Funciones el programa*/
+/* ----Funciones del programa---- */
 function activarBoton() {
   boton.disabled = !politica.checked;
 }
 
-/* ----Acciones del programa--- */
+function validarFormRegistro(e) {
+  e.preventDefault(); // Evita que se recargue la página
 
-//Establece la fecha maxima en el dia de hoy
-setMaxFecha(fecha);
-
-politica.addEventListener('change', activarBoton);
-activarBoton(); // El boton guardar datos se desactiva
-
-form.addEventListener('submit', function (event) {
-  event.preventDefault();//Proporciona los errores al pulsar el boton guardar datos y evita que la pagina se recargue
-
-  // Aceptar la politica de privacidad
+  // Aceptar la política de privacidad
   if (!politica.checked) {
-    alert('Debes aceptar la política de privacidad.');
+    alert("Debes aceptar la política de privacidad.");
     politica.focus();
     return;
   }
@@ -46,16 +38,18 @@ form.addEventListener('submit', function (event) {
   // Longitud del nombre y que solo contenga letras
   const nom = nombre.value.trim();
   if (nom.length < 3 || !solo_letras(nom)) {
-    alert('El nombre debe tener al menos 3 letras y solo contener letras y espacios.');
+    alert(
+      "El nombre debe tener al menos 3 letras y solo contener letras y espacios."
+    );
     nombre.focus();
     return;
   }
 
   // Dos apellidos con ciertos requisitos
   const apellido = apellidos.value.trim();
-  // Valida que haya al menos dos apellidos, cada uno con 3+ letras 
+  // Valida que haya al menos dos apellidos, cada uno con 3+ letras
   if (!/^[A-Za-zñÑ]{3,}\s+[A-Za-zñÑ]{3,}.*$/.test(apellido)) {
-    alert('Introduce al menos dos apellidos, cada uno con 3 o más letras.');
+    alert("Introduce al menos dos apellidos, cada uno con 3 o más letras.");
     apellidos.focus();
     return;
   }
@@ -64,12 +58,12 @@ form.addEventListener('submit', function (event) {
   const mail1 = correo.value.trim();
   const mail2 = correo2.value.trim();
   if (!validar_email(mail1)) {
-    alert('Correo electrónico no válido');
+    alert("Correo electrónico no válido");
     correo.focus();
     return;
   }
   if (mail1 !== mail2) {
-    alert('Los correos no coinciden.');
+    alert("Los correos no coinciden.");
     correo2.focus();
     return;
   }
@@ -78,7 +72,7 @@ form.addEventListener('submit', function (event) {
   const fechaHoy = fecha.value;
   const hoy = new Date().toISOString().slice(0, 10);
   if (!fechaHoy || fechaHoy > hoy) {
-    alert('Fecha de nacimiento no válida');
+    alert("Fecha de nacimiento no válida");
     fecha.focus();
     return;
   }
@@ -86,7 +80,7 @@ form.addEventListener('submit', function (event) {
   // Login
   const log = login.value.trim();
   if (log.length < 5) {
-    alert('El login debe tener al menos 5 caracteres.');
+    alert("El login debe tener al menos 5 caracteres.");
     login.focus();
     return;
   }
@@ -94,37 +88,54 @@ form.addEventListener('submit', function (event) {
   // Password
   const pass = password.value.trim();
   if (!validar_password(pass)) {
-    alert('La contraseña debe tener 8 caracteres, al menos 2 números, 1 carácter especial, 1 mayúscula y 1 minúscula.');
+    alert(
+      "La contraseña debe tener 8 caracteres, al menos 2 números, 1 carácter especial, 1 mayúscula y 1 minúscula."
+    );
     password.focus();
     return;
   }
 
   // Imagen (webp/png/jpg)
   const archivo = imagen.files[0];
-  const tiposPermitidos = ['image/webp', 'image/png', 'image/jpeg'];
+  const tiposPermitidos = ["image/webp", "image/png", "image/jpeg"];
   if (!archivo || !tiposPermitidos.includes(archivo.type)) {
-    alert('Selecciona una imagen válida (webp, png o jpg).');
+    alert("Selecciona una imagen válida (webp, png o jpg).");
     imagen.focus();
     return;
   }
 
-  /*---------Guardado del usuario-------- */
+  // Convertimos la imagen a Base64
+  const reader = new FileReader();
+  reader.onload = function () {
+    const imagenBase64 = reader.result;
+    localStorage.setItem("imagenPerfil", imagenBase64);
 
-  // Construimos un objeto usuario con los valores introducidos
-  const usuario = {
-    nombre: nom,
-    apellidos: apellido,
-    correo: mail1,
-    login: log,
-    imagen:localStorage.getItem('imagenPerfil')
+    // Construimos objeto usuario
+    const usuario = {
+      nombre: nom,
+      apellidos: apellido,
+      correo: mail1,
+      login: log,
+      imagen: imagenBase64, // usamos directamente la base64
+    };
+
+    // Lo guardamos
+    const usuarios = JSON.parse(localStorage.getItem("usuarios") || "{}"); // Carga los usuarios guardados o un objeto vacío si no hay datos
+    usuarios[usuario.login] = usuario; // Guarda o actualiza al usuario
+    localStorage.setItem("usuarios", JSON.stringify(usuarios)); // Actualiza el localStorage con todos los usuarios
+    localStorage.setItem("sesion", JSON.stringify({ login: usuario.login })); // Guarda la sesión actual del usuario,es decir el usuario que ha iniciado sesion
+    localStorage.removeItem("imagenPerfil");
+
+    window.location.href = "version-B.html";
   };
+  reader.readAsDataURL(archivo);
+}
+/* ----Acciones del programa--- */
 
-  // Guardamos los datos del usuario en el localStorage (diccionario por login)
-  const usuarios = JSON.parse(localStorage.getItem("usuarios") || "{}"); // Carga los usuarios guardados o un objeto vacío si no hay datos
-  usuarios[usuario.login] = usuario; // Guarda o actualiza al usuario
-  localStorage.setItem("usuarios", JSON.stringify(usuarios)); // Actualiza el localStorage con todos los usuarios
-  localStorage.setItem("sesion", JSON.stringify({ login: usuario.login })); // Guarda la sesión actual del usuario,es decir el usuario que ha iniciado sesion
-  localStorage.removeItem('imagenPerfil')
+//Establece la fecha maxima en el dia de hoy
+setMaxFecha(fecha);
 
-  window.location.href = 'version-B.html';
-});
+politica.addEventListener("change", activarBoton);
+activarBoton(); // El boton guardar datos se desactiva
+
+form.addEventListener("submit", validarFormRegistro);
