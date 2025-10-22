@@ -13,8 +13,7 @@ import {
 const formularioRegistro = document.querySelector(".formulario-registro");
 const inputUsuario = document.getElementById("usuario");
 const inputContraseña = document.getElementById("contraseña");
-// const inputCredenciales = document.getElementById("#credenciales");
-// no se tiene que implementar según el enunciado
+// const inputCredenciales = document.getElementById("#credenciales"); no se tiene que implementar según el enunciado
 const btnIniciarSesion = document.querySelector(".boton-iniciar-sesion");
 const btnRegistro = document.querySelector(".boton-registro-registro");
 
@@ -35,30 +34,20 @@ function iniciar_sesion(e) {
   }
 
   const usuariosGuardados = JSON.parse(
-    localStorage.getItem("usuariosRegistrados") || "[]"
+    localStorage.getItem("usuarios") || "[]"
   );
 
-  let usuarioExistente = null;
+  const usuarioExistente = usuariosGuardados[usuario];
 
-  for (let i = 0; i < usuariosGuardados.length; i++) {
-    if (
-      usuariosGuardados[i].usuario === usuario &&
-      usuariosGuardados[i].contraseña === contraseña
-    ) {
-      usuarioExistente = usuariosGuardados[i];
-      break; // salimos cuando lo encontramos
-    }
-  }
-
-  if (usuarioExistente) {
-    // Guardar credenciales SIEMPRE (no incluimos lo de recordar credenciales)
-
+  if (usuarioExistente && usuarioExistente.password === contraseña) {
+    // Redirigir a versión B, guardando el usuario en el sesion
     localStorage.setItem(
-      "usuarioAlmacenado",
-      JSON.stringify({ usuario, contraseña })
+      "sesion",
+      JSON.stringify({
+        login: usuarioExistente.login,
+        imagen: usuarioExistente.imagen,
+      })
     );
-
-    // Redirigir a versión B
     window.location.href = "version-B.html";
   } else {
     alert("Usuario o contraseña incorrectos. Por favor, verifica tus datos.");

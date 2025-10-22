@@ -21,11 +21,11 @@ const politica = document.getElementById("politica");
 const boton = document.getElementById("btn-guardar");
 
 /* ----Funciones del programa---- */
-function activarBoton() {
+function activar_boton() {
   boton.disabled = !politica.checked;
 }
 
-function validarFormRegistro(e) {
+function validar_form_registro(e) {
   e.preventDefault(); // Evita que se recargue la página
 
   // Aceptar la política de privacidad
@@ -99,7 +99,7 @@ function validarFormRegistro(e) {
   const archivo = imagen.files[0];
   const tiposPermitidos = ["image/webp", "image/png", "image/jpeg"];
   if (!archivo || !tiposPermitidos.includes(archivo.type)) {
-    alert("Selecciona una imagen válida (webp, png o jpg).");
+    alert("Selecciona una imagen válida (webp, png o jpeg).");
     imagen.focus();
     return;
   }
@@ -116,6 +116,7 @@ function validarFormRegistro(e) {
       apellidos: apellido,
       correo: mail1,
       login: log,
+      password: pass,
       imagen: imagenBase64, // usamos directamente la base64
     };
 
@@ -123,7 +124,10 @@ function validarFormRegistro(e) {
     const usuarios = JSON.parse(localStorage.getItem("usuarios") || "{}"); // Carga los usuarios guardados o un objeto vacío si no hay datos
     usuarios[usuario.login] = usuario; // Guarda o actualiza al usuario
     localStorage.setItem("usuarios", JSON.stringify(usuarios)); // Actualiza el localStorage con todos los usuarios
-    localStorage.setItem("sesion", JSON.stringify({ login: usuario.login })); // Guarda la sesión actual del usuario,es decir el usuario que ha iniciado sesion
+    localStorage.setItem(
+      "sesion",
+      JSON.stringify({ login: usuario.login, imagen: usuario.imagen })
+    ); // Guarda la sesión actual del usuario,es decir el usuario que ha iniciado sesion
     localStorage.removeItem("imagenPerfil");
 
     window.location.href = "version-B.html";
@@ -135,7 +139,7 @@ function validarFormRegistro(e) {
 //Establece la fecha maxima en el dia de hoy
 setMaxFecha(fecha);
 
-politica.addEventListener("change", activarBoton);
-activarBoton(); // El boton guardar datos se desactiva
+politica.addEventListener("change", activar_boton);
+activar_boton(); // El boton guardar datos se desactiva
 
-form.addEventListener("submit", validarFormRegistro);
+form.addEventListener("submit", validar_form_registro);

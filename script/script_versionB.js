@@ -18,6 +18,10 @@ const btnModalCancelar = document.querySelector(
 const btnModalConfirmar = document.querySelector(
   ".modal-confirmacion .btn-confirmar"
 );
+// Usuario
+const fotoUsuario = document.querySelector(".imagen-perfil-usuario");
+const nombreUsuario = document.getElementById("texto-usuario");
+
 // Consejos
 const tituloConsejo = document.getElementById("titulo-consejo");
 const descripcionConsejo = document.getElementById("descripcion-consejo");
@@ -65,6 +69,8 @@ function modal_cancelar() {
 function modal_confirmar() {
   modalCerrarSesion.classList.toggle("modal-visible");
   desbloquear_vista();
+  // Cerramos sesion -> vamos a index y eliminamos el usuario de sesion
+  localStorage.removeItem("sesion");
   window.location.href = "index.html";
 }
 
@@ -133,10 +139,37 @@ function solo_letras(texto) {
   return regex.test(texto);
 }
 
+// Usuario: nombre y foto de perfil
+function establecer_usuario() {
+  // Obtener de sesion la informacion
+  const sesion = JSON.parse(localStorage.getItem("sesion") || "{}");
+  if (!sesion.login) {
+    // Si no hay sesión activa, redirigimos al login
+    window.location.href = "index.html";
+    return;
+  }
+  // Establecemos la información del usuario
+  establecer_nombre_usuario(sesion.login);
+  establecer_imagen_usuario(sesion.imagen);
+}
+
+function establecer_nombre_usuario(login) {
+  if (nombreUsuario) {
+    nombreUsuario.textContent = login;
+  }
+}
+
+function establecer_imagen_usuario(imagen) {
+  if (fotoUsuario) {
+    fotoUsuario.src = imagen;
+  }
+}
+
 /* ----Acciones del programa: valores iniciales y eventos---- */
 
 // Mostramos el primer pack al cargar sin animación
 packViaje1.classList.add("visible");
+establecer_usuario();
 
 // Carrusel
 flechaDerecha.addEventListener("click", avanzar_pack);
