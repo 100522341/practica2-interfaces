@@ -19,11 +19,13 @@ const passwordC = document.getElementById("passwordC"); // Nombre del titular (e
 const fechaC = document.getElementById("fechaC"); // Fecha de caducidad
 const cvvC = document.getElementById("cvvC"); // CVV
 
-/*Establcemos la fecha en el dia de hoy*/
+/* ----Acciones del programa: valores iniciales y eventos---- */
+
+// Establecemos la fecha
 setMinFecha(fechaC);
 
-/* Pulsar el boton comprar */
-formC.addEventListener("submit", (event) => {
+/* Función de validación del formulario */
+function validarFormularioCompra(event) {
   event.preventDefault();
 
   // Nombre completo: 3+ caracteres
@@ -37,7 +39,9 @@ formC.addEventListener("submit", (event) => {
   // Email válido
   const mail = correoC.value.trim();
   if (!validar_email(mail)) {
-    alert("Correo electrónico no válido debe seguir el formato nombre@dominio.ext).");
+    alert(
+      "Correo electrónico no válido debe seguir el formato nombre@dominio.ext)."
+    );
     correoC.focus();
     return;
   }
@@ -85,4 +89,7 @@ formC.addEventListener("submit", (event) => {
 
   // Todo OK → simular compra
   alert("Compra realizada");
-});
+}
+
+/* Pulsar el boton comprar */
+formC.addEventListener("submit", validarFormularioCompra);
