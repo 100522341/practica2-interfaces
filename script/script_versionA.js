@@ -25,10 +25,11 @@ function activarBoton() {
   boton.disabled = !politica.checked;
 }
 
+/* ----Acciones del programa--- */
+
 //Establece la fecha maxima en el dia de hoy
 setMaxFecha(fecha);
 
-/* ----Acciones del programa--- */
 politica.addEventListener('change', activarBoton);
 activarBoton(); // El boton guardar datos se desactiva
 
