@@ -25,13 +25,10 @@ function activarBoton() {
   boton.disabled = !politica.checked;
 }
 
-function activarFormulario() {
-  //Establece la fecha maxima en el dia de hoy
-  setMaxFecha(fecha);
-  //Activar o desactivar botón según si se acepta la política o no
-}
-// Llamas a la función al cargar
-activarFormulario();
+
+//Establece la fecha maxima en el dia de hoy
+setMaxFecha(fecha);
+
 
 
 
