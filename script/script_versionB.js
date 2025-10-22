@@ -31,40 +31,6 @@ let scrollPosX = 0;
 
 /* ----Funciones del programa---- */
 
-// Carrusel
-/*
-function mostrar_packs(indice) {
-  // Quitar clases visible y fade de todos
-  packViaje1.classList.remove("visible", "fade");
-  packViaje2.classList.remove("visible", "fade");
-  packViaje3.classList.remove("visible", "fade");
-
-  if (indice === 0) {
-    packViaje1.classList.add("visible", "fade");
-  } else if (indice === 1) {
-    packViaje2.classList.add("visible", "fade");
-  } else if (indice === 2) {
-    packViaje3.classList.add("visible", "fade");
-  }
-}
-
-function avanzar_pack() {
-  indiceActual = (indiceActual + 1) % 3;
-  mostrar_packs(indiceActual);
-  reiniciar_intervalo();
-}
-
-function retroceder_pack() {
-  indiceActual = (indiceActual - 1 + 3) % 3;
-  mostrar_packs(indiceActual);
-  reiniciar_intervalo();
-}
-
-function reiniciar_intervalo() {
-  clearInterval(autoPlayTimer);
-  autoPlayTimer = setInterval(avanzar_pack, 2000);
-}
-*/
 // Modal cerrar sesión
 
 function open_modal() {

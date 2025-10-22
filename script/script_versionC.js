@@ -7,20 +7,20 @@ import {
   cvv_valido,
   diaHoy,
   setMinFecha,
-} from "./script_datos_formulario.js";
+} from "./datos_form.js";
 
 /* ----Seleccionamos los elementos del DOM---- */
-const formC     = document.getElementById("formC");
-const nombreC   = document.getElementById("nombreC");   // Nombre completo / titular
-const correoC   = document.getElementById("correoC");
-const tarjeta   = document.getElementById("tarjeta");   // Select tipo de tarjeta
-const loginC    = document.getElementById("loginC");    // Nº de tarjeta
+const formC = document.getElementById("formC");
+const nombreC = document.getElementById("nombreC"); // Nombre completo / titular
+const correoC = document.getElementById("correoC");
+const tarjeta = document.getElementById("tarjeta"); // Select tipo de tarjeta
+const loginC = document.getElementById("loginC"); // Nº de tarjeta
 const passwordC = document.getElementById("passwordC"); // Nombre del titular (en tu HTML)
-const fechaC    = document.getElementById("fechaC");    // Fecha de caducidad
-const cvvC      = document.getElementById("cvvC");      // CVV
+const fechaC = document.getElementById("fechaC"); // Fecha de caducidad
+const cvvC = document.getElementById("cvvC"); // CVV
 
 /*Establcemos la fecha en el dia de hoy*/
-setMinFecha(fechaC); 
+setMinFecha(fechaC);
 
 /* Pulsar el boton comprar */
 formC.addEventListener("submit", (event) => {
@@ -44,7 +44,9 @@ formC.addEventListener("submit", (event) => {
 
   // Tipo de tarjeta seleccionado
   if (!tarjeta.value) {
-    alert("Selecciona un tipo de tarjeta (Visa, Mastercard o American Express).");
+    alert(
+      "Selecciona un tipo de tarjeta (Visa, Mastercard o American Express)."
+    );
     tarjeta.focus();
     return;
   }
