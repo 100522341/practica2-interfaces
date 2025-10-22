@@ -37,7 +37,7 @@ formC.addEventListener("submit", (event) => {
   // Email válido
   const mail = correoC.value.trim();
   if (!validar_email(mail)) {
-    alert("Correo electrónico no válido (formato nombre@dominio.ext).");
+    alert("Correo electrónico no válido debe seguir el formato nombre@dominio.ext).");
     correoC.focus();
     return;
   }

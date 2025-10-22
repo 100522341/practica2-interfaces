@@ -34,7 +34,7 @@ politica.addEventListener('change', activarBoton);
 activarBoton(); // El boton guardar datos se desactiva
 
 form.addEventListener('submit', function (event) {
-  event.preventDefault();//Proporciona los errores al pulsar el boton guardar datos
+  event.preventDefault();//Proporciona los errores al pulsar el boton guardar datos y evita que la pagina se recargue
 
   // Aceptar la politica de privacidad
   if (!politica.checked) {
@@ -100,9 +100,9 @@ form.addEventListener('submit', function (event) {
   }
 
   // Imagen (webp/png/jpg)
-  const file = imagen.files[0];
+  const archivo = imagen.files[0];
   const tiposPermitidos = ['image/webp', 'image/png', 'image/jpeg'];
-  if (!file || !tiposPermitidos.includes(file.type)) {
+  if (!archivo || !tiposPermitidos.includes(archivo.type)) {
     alert('Selecciona una imagen válida (webp, png o jpg).');
     imagen.focus();
     return;
@@ -116,13 +116,15 @@ form.addEventListener('submit', function (event) {
     apellidos: apellido,
     correo: mail1,
     login: log,
+    imagen:localStorage.getItem('imagenPerfil')
   };
 
   // Guardamos los datos del usuario en el localStorage (diccionario por login)
-  const usuarios = JSON.parse(localStorage.getItem("usuarios") || "{}"); // Carga los usuarios guardados o un objeto vacío
+  const usuarios = JSON.parse(localStorage.getItem("usuarios") || "{}"); // Carga los usuarios guardados o un objeto vacío si no hay datos
   usuarios[usuario.login] = usuario; // Guarda o actualiza al usuario
   localStorage.setItem("usuarios", JSON.stringify(usuarios)); // Actualiza el localStorage con todos los usuarios
-  localStorage.setItem("sesion", JSON.stringify({ login: usuario.login })); // Guarda la sesión actual (clave 'sesion', como la usabas)
+  localStorage.setItem("sesion", JSON.stringify({ login: usuario.login })); // Guarda la sesión actual del usuario,es decir el usuario que ha iniciado sesion
+  localStorage.removeItem('imagenPerfil')
 
   window.location.href = 'version-B.html';
 });
