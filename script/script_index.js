@@ -9,56 +9,11 @@ import {
   retroceder_pack,
 } from "./carrusel.js";
 
-/* ----Seleccionamos los elementos del DOM---- */
-const formularioRegistro = document.querySelector(".formulario-registro");
-const inputUsuario = document.getElementById("usuario");
-const inputContraseña = document.getElementById("contraseña");
-// const inputCredenciales = document.getElementById("#credenciales"); no se tiene que implementar según el enunciado
+import { iniciar_sesion, registrar } from "./user_form.js";
+
 const btnIniciarSesion = document.querySelector(".boton-iniciar-sesion");
 const btnRegistro = document.querySelector(".boton-registro-registro");
 
-/* ----Creamos variables de estado---- */
-
-/* ----Funciones del programa---- */
-
-// Formulario de registro
-function iniciar_sesion(e) {
-  // Evitamos el envío automático del formulario
-  e.preventDefault();
-  const usuario = inputUsuario.value.trim();
-  const contraseña = inputContraseña.value.trim();
-
-  if (!usuario || !contraseña) {
-    alert("Por favor, completa todos los campos de registro");
-    return;
-  }
-
-  const usuariosGuardados = JSON.parse(
-    localStorage.getItem("usuarios") || "[]"
-  );
-
-  const usuarioExistente = usuariosGuardados[usuario];
-
-  if (usuarioExistente && usuarioExistente.password === contraseña) {
-    // Redirigir a versión B, guardando el usuario en el sesion
-    localStorage.setItem(
-      "sesion",
-      JSON.stringify({
-        login: usuarioExistente.login,
-        imagen: usuarioExistente.imagen,
-      })
-    );
-    window.location.href = "version-B.html";
-  } else {
-    alert("Usuario o contraseña incorrectos. Por favor, verifica tus datos.");
-  }
-}
-
-function registrar(e) {
-  // Solo tenemos que mandar a la version B
-  e.preventDefault();
-  window.location.href = "version-A.html";
-}
 /* ----Acciones del programa: valores iniciales y eventos---- */
 
 // Mostramos el primer pack al cargar sin animación
