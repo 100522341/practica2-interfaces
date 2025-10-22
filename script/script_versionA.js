@@ -5,7 +5,7 @@ import {
   validar_email,
   validar_password,
   setMaxFecha,
-} from "./script_datos_formulario.js";
+} from "./datos_form.js";
 
 /* ----Seleccionamos los elementos del DOM---- */
 const form      = document.getElementById('formA');
@@ -25,12 +25,8 @@ function activarBoton() {
   boton.disabled = !politica.checked;
 }
 
-
 //Establece la fecha maxima en el dia de hoy
 setMaxFecha(fecha);
-
-
-
 
 /* ----Acciones del programa--- */
 politica.addEventListener('change', activarBoton);
