@@ -16,6 +16,10 @@ export function validar_password(pass) {
   );
 }
 
+export function validar_apellido(apellido) {
+  return /^[A-Za-zñÑ]{3,}\s+[A-Za-zñÑ]{3,}.*$/.test(apellido);
+}
+
 export function validar_numero_tarjeta(num) {
   return /^(?:\d{13}|\d{15}|\d{16}|\d{19})$/.test(num);
 }

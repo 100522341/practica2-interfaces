@@ -5,6 +5,7 @@ import {
   validar_email,
   validar_password,
   setMaxFecha,
+  validar_apellido,
 } from "./datos_form.js";
 
 /* ----Seleccionamos los elementos del DOM---- */
@@ -48,7 +49,7 @@ function validar_form_registro(e) {
   // Dos apellidos con ciertos requisitos
   const apellido = apellidos.value.trim();
   // Valida que haya al menos dos apellidos, cada uno con 3+ letras
-  if (!/^[A-Za-zñÑ]{3,}\s+[A-Za-zñÑ]{3,}.*$/.test(apellido)) {
+  if (!validar_apellido(apellido)) {
     alert("Introduce al menos dos apellidos, cada uno con 3 o más letras.");
     apellidos.focus();
     return;
