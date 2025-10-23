@@ -1,6 +1,9 @@
 "use strict";
 
 /* ----Seleccionamos los elementos del DOM---- */
+
+export const btnIniciarSesion = document.querySelector(".boton-iniciar-sesion");
+export const btnRegistro = document.querySelector(".boton-registro-registro");
 export const inputUsuario = document.getElementById("usuario");
 export const inputContraseña = document.getElementById("contraseña");
 // const inputCredenciales = document.getElementById("#credenciales"); no se tiene que implementar según el enunciado

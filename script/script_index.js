@@ -9,10 +9,12 @@ import {
   retroceder_pack,
 } from "./carrusel.js";
 
-import { iniciar_sesion, registrar } from "./user_form.js";
-
-const btnIniciarSesion = document.querySelector(".boton-iniciar-sesion");
-const btnRegistro = document.querySelector(".boton-registro-registro");
+import {
+  btnIniciarSesion,
+  btnRegistro,
+  iniciar_sesion,
+  registrar,
+} from "./user_form.js";
 
 /* ----Acciones del programa: valores iniciales y eventos---- */
 
