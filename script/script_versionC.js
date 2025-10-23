@@ -3,7 +3,7 @@
 /* ----Imports---- */
 import {
   validar_email,
-  numero_tarjeta_valido,
+  validar_numero_tarjeta,
   cvv_valido,
   diaHoy,
   setMinFecha,
@@ -25,7 +25,7 @@ const cvvC = document.getElementById("cvvC"); // CVV
 setMinFecha(fechaC);
 
 /* Función de validación del formulario */
-function validarFormularioCompra(event) {
+function validar_formulario_compra(event) {
   event.preventDefault();
 
   // Nombre completo: 3+ caracteres
@@ -57,7 +57,7 @@ function validarFormularioCompra(event) {
 
   // Número de tarjeta: 13, 15, 16 o 19 dígitos
   const numTarjeta = loginC.value.trim();
-  if (!numero_tarjeta_valido(numTarjeta)) {
+  if (!validar_numero_tarjeta(numTarjeta)) {
     alert("Número de tarjeta inválido: debe tener 13, 15, 16 o 19 dígitos.");
     loginC.focus();
     return;
@@ -92,4 +92,4 @@ function validarFormularioCompra(event) {
 }
 
 /* Pulsar el boton comprar */
-formC.addEventListener("submit", validarFormularioCompra);
+formC.addEventListener("submit", validar_formulario_compra);

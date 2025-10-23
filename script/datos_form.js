@@ -1,7 +1,6 @@
 "use strict";
 
-/* ----Aquí tenemos las funciones para validar cada campo de los formularios
-en la versión A y versión C ----*/
+/* ----Aquí tenemos las funciones para validar cada campo de los formularios en la versión A y versión C ----*/
 export function solo_letras(texto) {
   return /^[a-zA-ZñÑ\s]+$/.test(texto);
 }
@@ -17,7 +16,7 @@ export function validar_password(pass) {
   );
 }
 
-export function numero_tarjeta_valido(num) {
+export function validar_numero_tarjeta(num) {
   return /^(?:\d{13}|\d{15}|\d{16}|\d{19})$/.test(num);
 }
 
