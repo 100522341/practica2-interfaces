@@ -1,7 +1,7 @@
 "use strict";
 /* ----Imports---- */
 import {
-  solo_letras,
+  validar_nombre,
   validar_email,
   validar_password,
   setMaxFecha,
@@ -38,7 +38,7 @@ function validar_form_registro(e) {
 
   // Longitud del nombre y que solo contenga letras
   const nom = nombre.value.trim();
-  if (nom.length < 3 || !solo_letras(nom)) {
+  if (!validar_nombre(nom)) {
     alert(
       "El nombre debe tener al menos 3 letras y solo contener letras y espacios."
     );

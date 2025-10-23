@@ -5,6 +5,11 @@ export function solo_letras(texto) {
   return /^[a-zA-ZñÑ\s]+$/.test(texto);
 }
 
+export function validar_nombre(nombre) {
+  // Al menos 3 letras, puede incluir espacios y letras con ñ/Ñ
+  return /^[A-Za-zñÑ\s]{3,}$/.test(nombre);
+}
+
 export function validar_email(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
