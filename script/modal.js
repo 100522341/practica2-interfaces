@@ -1,5 +1,13 @@
 "use strict";
 /* ----Seleccionamos el modal del DOM---- */
+export const btnCerrarSesion = document.querySelector(".boton-cerrar-B");
+export const btnModalCancelar = document.querySelector(
+  ".modal-confirmacion .btn-cancelar"
+);
+export const btnModalConfirmar = document.querySelector(
+  ".modal-confirmacion .btn-confirmar"
+);
+
 const modalCerrarSesion = document.querySelector(".modal-confirmacion");
 
 /* ----Funciones asociadas al modal de cerrar sesión---- */
