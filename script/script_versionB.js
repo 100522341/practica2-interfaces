@@ -9,8 +9,14 @@ import {
 } from "./carrusel.js";
 
 import { open_modal, modal_cancelar, modal_confirmar } from "./modal.js";
+import {
+  btnEnviarConsejo,
+  agregar_consejo,
+  mostrar_ultimos_consejos,
+} from "./consejos.js";
 
 /* ----Seleccionamos los elementos del DOM---- */
+
 // Cerrar sesion
 const btnCerrarSesion = document.querySelector(".boton-cerrar-B");
 const btnModalCancelar = document.querySelector(
@@ -24,13 +30,9 @@ const fotoUsuario = document.querySelector(".imagen-perfil-usuario");
 const nombreUsuario = document.getElementById("texto-usuario");
 
 // Consejos
-const tituloConsejo = document.getElementById("titulo-consejo");
-const descripcionConsejo = document.getElementById("descripcion-consejo");
-const btnEnviarConsejo = document.getElementById("enviar-consejo");
-const listaConsejos = document.getElementById("lista-consejos");
 
 /* ----Funciones del programa---- */
-
+/*
 // Sección últimos consejos
 function agregar_consejo() {
   const titulo = tituloConsejo.value.trim();
@@ -95,7 +97,7 @@ function solo_letras(texto) {
   const regex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
   return regex.test(texto);
 }
-
+*/
 // Usuario: nombre y foto de perfil
 function establecer_usuario() {
   // Obtener de sesion la informacion
