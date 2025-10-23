@@ -8,10 +8,11 @@ import {
   retroceder_pack,
 } from "./carrusel.js";
 
+import { open_modal, modal_cancelar, modal_confirmar } from "./modal.js";
+
 /* ----Seleccionamos los elementos del DOM---- */
 // Cerrar sesion
 const btnCerrarSesion = document.querySelector(".boton-cerrar-B");
-const modalCerrarSesion = document.querySelector(".modal-confirmacion");
 const btnModalCancelar = document.querySelector(
   ".modal-confirmacion .btn-cancelar"
 );
@@ -28,51 +29,7 @@ const descripcionConsejo = document.getElementById("descripcion-consejo");
 const btnEnviarConsejo = document.getElementById("enviar-consejo");
 const listaConsejos = document.getElementById("lista-consejos");
 
-/* ----Creamos variables de estado---- */
-// Cerrar sesion
-let scrollPosY = 0;
-let scrollPosX = 0;
-
 /* ----Funciones del programa---- */
-
-// Modal cerrar sesión
-
-function open_modal() {
-  bloquear_vista();
-  modalCerrarSesion.classList.toggle("modal-visible");
-}
-
-function bloquear_vista() {
-  // Guardar posición actual
-  scrollPosX = window.scrollX;
-  scrollPosY = window.scrollY;
-
-  // Bloquear scroll
-  window.onscroll = function () {
-    window.scrollTo(scrollPosX, scrollPosY);
-  };
-
-  // Bloquear también con CSS
-  document.body.style.overflow = "hidden";
-}
-
-function desbloquear_vista() {
-  window.onscroll = null;
-  document.body.style.overflow = "";
-}
-
-function modal_cancelar() {
-  modalCerrarSesion.classList.toggle("modal-visible");
-  desbloquear_vista();
-}
-
-function modal_confirmar() {
-  modalCerrarSesion.classList.toggle("modal-visible");
-  desbloquear_vista();
-  // Cerramos sesion -> vamos a index y eliminamos el usuario de sesion
-  localStorage.removeItem("sesion");
-  window.location.href = "index.html";
-}
 
 // Sección últimos consejos
 function agregar_consejo() {
